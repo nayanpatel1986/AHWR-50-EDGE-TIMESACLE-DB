@@ -1,0 +1,36 @@
+AHWR-50 TWIN - STARTUP ACCESS-DENIED CHECK - 23 OCTOBER 2026
+
+The screenshot shows a Windows "Access is denied" message. It does not
+identify the blocked program or prove that administrator access is needed.
+
+APPLY THE SMALL STARTUP PATCH
+1. Fully extract the patch ZIP. Open its AHWR-EDGE folder.
+2. Copy Start-AHWR-EDGE.bat and Diagnose-AHWR-EDGE-Startup.bat into your
+   existing, fully extracted AHWR-EDGE installation folder. Replace only
+   Start-AHWR-EDGE.bat when prompted. Leave settings.env and data untouched.
+3. Double-click Start-AHWR-EDGE.bat. It shows three numbered startup steps.
+4. If startup still fails, double-click Diagnose-AHWR-EDGE-Startup.bat.
+   Send the generated AHWR-Startup-Diagnostics.txt report to support.
+   The report is saved in your Windows TEMP folder; its full path is shown.
+
+HOW TO READ THE RESULT
+- Missing files: extract the complete application ZIP to a permanent local
+  folder before running it. Do not launch from the compressed ZIP viewer.
+- Denied folder writes: ask IT for an installation folder that your account
+  can write to. The database, run and logs folders need write access.
+- PowerShell check denied: the application startup script has not run.
+  Ask IT to check Windows PowerShell access and application-control events.
+- Runtime check denied: give IT the exact program and exit code reported.
+- All program checks pass: send the error shown at startup step 3 and the
+  relevant error log from the installation's logs folder for diagnosis.
+
+The diagnostics start no services and change no security policies. They
+only check file presence, runtime versions and temporary-file write/delete
+access in the existing run, logs and database folders. They do not copy
+settings.env, tokens, credentials or database contents into the report.
+Installing or disabling security products is not part of this patch.
+
+IT reference for application-control events:
+https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/applocker/using-event-viewer-with-applocker
+
+This patch does not contain or replace your saved database or settings.
